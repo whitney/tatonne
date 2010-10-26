@@ -13,6 +13,17 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 
+##################
+## app requires ##
+##################
+require 'app/price'
+require 'app/product'
+
+##################
+## lib requires ##
+##################
+# TODO
+
 # require some sample helpers
 =begin
 require 'helpers'
@@ -39,13 +50,31 @@ before do
   @version = Version
 end
 
-# simplest example view we first define a URL route and 
-# then return some content to be displayed
-get '/' do
+###############
+## price API ##
+###############
+get '/price' do
 	content_type :json
-  	{:title => 'tatonne'}.to_json
+	Price.get(params)
 end
 
+post '/price' do
+	content_type :json
+	Price.post(params)
+end
+
+get '/price/product/:id/:action' do
+	content_type :json
+	Product.get(params)
+end
+
+post '/price/product' do
+	content_type :json
+	Product.post(params)
+end
+
+=begin
+SAMPLE CODE
 # as well as just return body content we can also set
 # the HTTP headers directly. This view also demonstrates the use
 # of erb templates, with local variables being exposed to the template
@@ -66,12 +95,6 @@ end
 # splats allow for unnamed wildcard variables in urls
 get '/splat/*/*' do
   params["splat"][0] + params["splat"][1]
-end
-
-# the redirect method throws a 302 redirect
-# and works with local or remote URLs or fragments
-get '/home' do
-  redirect '/'
 end
 
 # if we want to specify the status code for a redirect we can
@@ -96,3 +119,4 @@ end
 error do
   'Sorry there was a nasty error - ' + request.env['sinatra.error']
 end
+=end

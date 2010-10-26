@@ -11,6 +11,7 @@
 # for sinatra
 require 'rubygems'
 require 'sinatra'
+require 'json'
 
 # require some sample helpers
 =begin
@@ -41,7 +42,8 @@ end
 # simplest example view we first define a URL route and 
 # then return some content to be displayed
 get '/' do
-  'Hello world'
+	content_type :json
+  	{:title => 'tatonne'}.to_json
 end
 
 # as well as just return body content we can also set
