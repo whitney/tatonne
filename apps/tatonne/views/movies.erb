@@ -1,0 +1,15 @@
+<div id="movies_list" style="float: left; width:50%">
+	<form action="/movies">
+		<label>location:</label>
+		<select name="location" onchange="this.form.submit()">
+		<option value="newyork:NY" <%= @location == "newyork:NY" ? "selected=\"selected\"" : '' %>>New York, NY</option>
+		<option value="portland:OR" <%= @location == "portland:OR" ? "selected=\"selected\"" : '' %>>Portland, OR</option>
+		</select>
+	</form>
+	<p><%= @movies %></p>
+</div>
+
+<div id="movies_map">
+	<h3>Locations:</h3>
+	<div id="map_canvas" style="width:50%; height:760px"></div>
+</div>

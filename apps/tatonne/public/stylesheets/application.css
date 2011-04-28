@@ -1,0 +1,38 @@
+/*===================================*\
+|          base-bare-minimum          |
+|             styling                 | 
+\*===================================*/
+
+/*===================
+fonts
+=====================*/
+body, li, td, div {
+	font: 11px verdana, arial, sans-serif;
+}
+
+.floatright { float: right; }
+
+/*===================
+flash notices
+=====================*/
+.err, .ok {
+	margin: 0.3em 0;
+	padding: 5px 7px;
+	text-align: center;
+	color: #fff;
+}
+
+.ok {
+	background: #00A8FF;
+}
+
+.err {
+	background: #00A8FF;
+}
+
+.err_on {
+	display: inline-block;
+	padding: 0px 3px;
+	color #f10;
+	font-weight: bold;
+}

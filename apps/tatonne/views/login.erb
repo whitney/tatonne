@@ -1,0 +1,15 @@
+<% if flash.has?(:error) %>
+	<h3 class="err"><%= flash[:error] %></h3>
+<% end %>
+<% puts ">>>> flash: #{flash.inspect}" %>
+<% if flash.has?(:notice) %>
+	<h3 class="ok"><%= flash[:notice] %></h3>
+<% end %>
+<div align="right">
+
+	<form method="post" action="/login">
+		<p>email: <input type="text" name="email" /></p>
+		<p>password: <input type="password" name="password" /></p>
+		<p><input type="submit" value="Login" /></p>
+	</form>
+</div>

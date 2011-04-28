@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="cache-control" content="max-age=21600, must-revalidate" />
+<style type="text/css">
+	#map_canvas { height: 100% }
+</style>
+
+<link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+
+<title>Tatonne</title>
+
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js">
+</script>
+<script type="text/javascript"
+	src="http://maps.google.com/maps/api/js?sensor=true">
+</script>
+<script type="text/javascript"
+	src="/javascripts/google_map.js">
+</script>
+</head>
+
+<script>
+	$.getJSON("http://tatonne.com/movie-theaters?location=<%= @location %>", function(data) {
+		init_map(<%= @coord[:lat] %>, <%= @coord[:lng] %>, data);
+	});
+</script>
+<!-- <body onload="init_map(<%# @coord[:lat] %>, <%# @coord[:lng] %>, theaters)"> -->
+
+<% if @user = current_user %>
+	<div align="right">
+		<p>[<%= @user.first_name %>]  <a href="/movies">home</a> | <a href="/change-password">change password</a> | <a href="/logout">logout</a></p>
+	</div>
+<% else %>
+	<div align="right">
+		<p><a href="/login">login</a> | <a href="/signup">signup</a> | <a href="#">Forgot your password?</a></p>
+	</div>
+<% end %>
+<div id="wrapper">
+	<%= yield %>
+	<div id="footer">
+		<%# render :partial => 'layouts/footer' %>
+	</div><!-- footer -->
+</div><!-- wrapper -->
+</body>
+
+</html>
